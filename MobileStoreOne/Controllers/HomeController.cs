@@ -24,12 +24,19 @@ namespace MobileStoreOne.Controllers
             return View();
         }
         [HttpPost]
-        public string Buy(Order order)
+        public IActionResult Buy(Order order)
         {
             db.Orders.Add(order);
+            var phone = db.Phones.FirstOrDefault(x => order.PhoneId == x.Id);
+            if (phone != null)
+            {
+                db.Phones.Remove(phone);
+                db.SaveChanges();
+            }
+
             // сохраняем в бд все изменения
             db.SaveChanges();
-            return "Спасибо, " + order.User + ", за покупку!";
+            return Redirect("~/Home");
         }
     }
 }
