@@ -38,5 +38,36 @@ namespace MobileStoreOne.Controllers
             db.SaveChanges();
             return Redirect("~/Home");
         }
+
+        public IActionResult Change(int? id)
+        {
+            if (id != null)
+            {
+                var phone = db.Phones.FirstOrDefault(x => x.Id == id);
+                if (phone != null)
+                    return View(phone);
+
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult Change(Phone phone)
+        {
+            db.Phones.Update(phone);
+            db.SaveChanges();
+            return Redirect("~/Home");
+        }
+
+        public IActionResult AddNew()
+        {
+            return View();
+        }
+
+        public IActionResult Del()
+        {
+            return View();
+        }
+
     }
 }

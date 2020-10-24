@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "AddNew";
+}
+
+<h1>Добавить новый товар</h1>
+
+<form method="post" class="form-horizontal" role="form">
+    <p>Для добавления товара заполните следующие поля:</p>
+    <div class="form-group">
+        <label for="Model" class="col-md-2 control-label">Модель:</label>
+        <div class="col-md-4">
+            <input type="text" name="Model" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Company" class="col-md-2 control-label">Производитель:</label>
+        <div class="col-md-4">
+            <input type="text" name="Company" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Price" class="col-md-2 control-label">Цена:</label>
+        <div class="col-md-4">
+            <input type="text" name="Price" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Добавить" />
+        </div>
+    </div>
+</form>

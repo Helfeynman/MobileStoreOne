@@ -7,7 +7,7 @@ namespace MobileStoreOne
     {
         public static void Initialize(MobileContext context)
         {
-            if (!context.Phones.Any())
+            if (context.Phones.Count() < 5)
             {
                 context.Phones.AddRange(
                     new Phone
@@ -26,6 +26,18 @@ namespace MobileStoreOne
                     {
                         Name = "Pixel 3",
                         Company = "Google",
+                        Price = 500
+                    },
+                    new Phone
+                    {
+                        Name = "Mi A1",
+                        Company = "Xiaomi",
+                        Price = 500
+                    },
+                    new Phone
+                    {
+                        Name = "Some",
+                        Company = "Some",
                         Price = 500
                     }
                 );
