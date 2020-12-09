@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MobileStoreOne.Models;   // пространство имен моделей
 using Microsoft.EntityFrameworkCore; // пространство имен EntityFramework
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MobileStoreOne
 {
@@ -27,6 +28,11 @@ namespace MobileStoreOne
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MobileContext>(options => options.UseSqlServer(connection));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(options => //CookieAuthenticationOptions
+                {
+                   options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+               });
             services.AddControllersWithViews();
         }
 
@@ -48,6 +54,7 @@ namespace MobileStoreOne
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
